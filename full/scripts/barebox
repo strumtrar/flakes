@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ `basename $PWD` == "barebox" ]; then
+  return
+fi
+if [ ! -L barebox ]; then
+  if [ ! -d $BAREBOX ]; then
+    add-new-worktree "barebox"
+  fi
+  ln -sf $BAREBOX barebox
+fi
+cd barebox
+touch .barebox

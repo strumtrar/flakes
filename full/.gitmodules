@@ -1,0 +1,3 @@
+[submodule "build-envs"]
+	path = build-envs
+	url = git@github.com:strumtrar/build-envs.git

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ `basename $PWD` == "kernel" ]; then
+  return
+fi
+if [ ! -L kernel ]; then
+  if [ ! -d $KERNEL ]; then
+    add-new-worktree "kernel"
+  fi
+  ln -sf $KERNEL kernel
+fi
+cd kernel
+touch .kernel

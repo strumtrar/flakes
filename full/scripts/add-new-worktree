@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+pushd $REPOS/$1
+git worktree prune
+WORKTREE=`git worktree list | grep $CUSTOMER.$PLATFORM | cut -d\  -f1`
+BRANCH=`git rev-parse --verify worktree/$1/$CUSTOMER.$PLATFORM`
+if [[ $WORKTREE && -e $WORKTREE ]]; then
+	pushd $WORKTREE && \
+	git checkout worktree/$1/$CUSTOMER.$PLATFORM
+elif [[ $BRANCH ]]; then
+	git worktree add $PRJ_ROOT/worktree/$1/$CUSTOMER.$PLATFORM worktree/$1/$CUSTOMER.$PLATFORM
+else
+	git worktree add -b worktree/$1/$CUSTOMER.$PLATFORM $PRJ_ROOT/worktree/$1/$CUSTOMER.$PLATFORM
+	if [ -e $HOME/backup/series/$CUSTOMER.$PLATFORM-useries-$1 ]; then
+		cp $HOME/backup/series/$CUSTOMER.$PLATFORM-useries-$1 useries
+	fi
+fi
+popd
+pushd worktree/$1/$CUSTOMER.$PLATFORM
+ln -sf $PRJ_ROOT/build-envs/just-compile-v7a/justfile justfile
+popd

@@ -1,0 +1,6 @@
+.direnv
+/barebox
+/kernel
+/worktree
+/proj
+project-*

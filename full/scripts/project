@@ -1,0 +1,7 @@
+PROJECT=`ssh -q projects@scm.pengutronix.de info -json | jq -r '.repos|keys[]' | grep $CUSTOMER | grep -v data`
+if [ ! -d $PROJECT ]; then
+	git clone projects@scm.pengutronix.de:$PROJECT $PROJECT
+fi
+if [ ! -L proj ]; then
+	ln -sf $PROJECT proj
+fi

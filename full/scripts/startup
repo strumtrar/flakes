@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+git branch v1.2/customer/envrc/$CUSTOMER.$PLATFORM
+git branch v1.2/customer/configs/$CUSTOMER.$PLATFORM
+git branch v1.2/customer/logs/$CUSTOMER.$PLATFORM
+git branch v1.2/customer/justfile/$CUSTOMER.$PLATFORM
+git branch v1.2/customer/buildenv/$CUSTOMER.$PLATFORM
+git push origin v1.2/customer/envrc/$CUSTOMER.$PLATFORM
+git push origin v1.2/customer/configs/$CUSTOMER.$PLATFORM
+git push origin v1.2/customer/logs/$CUSTOMER.$PLATFORM
+git push origin v1.2/customer/justfile/$CUSTOMER.$PLATFORM
+git push origin v1.2/customer/buildenv/$CUSTOMER.$PLATFORM
+git config rerere.enabled true
+git config umpf.remote origin
+umpf build --auto-rerere series && \
+git checkout -B worktree/$CUSTOMER.$PLATFORM
+mkdir logs
+mkdir configs

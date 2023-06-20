@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [[ -d proj ]]; then
+	cd proj
+	BSP=`grep BSP: todo/todo-trunk.txt`
+	BSPARR=($BSP)
+	URL=${BSPARR[1]}
+	NAME=`echo $URL | rev | cut -d/ -f1 | rev`
+	TYPE=`echo $NAME | cut -d. -f1 | tr '[:upper:]' '[:lower:]'`
+
+	git clone $URL
+	ln -sf $NAME bsp
+	cd bsp
+	ln -sf $PROJ_ROOT/build-envs/just-$TYPE/justfile
+fi

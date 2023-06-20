@@ -1,0 +1,25 @@
+CUSTOMER := env_var('CUSTOMER')
+CROSS_COMPILE := env_var('CROSS_COMPILE')
+TOOLCHAIN := env_var('TOOLCHAIN')
+TOOLCHAIN_VERSION := env_var('TOOLCHAIN_VERSION')
+IMAGE := "build-env-arm-multi:" + "OSELAS.Toolchain-" + TOOLCHAIN_VERSION
+ROOT := env_var('PRJ_ROOT')
+POD := env_var('PODMAN')
+
+default: ps
+
+tag +task:
+    {{POD}} image tag {{IMAGE}} {{CUSTOMER}}:{{task}}
+
+done *tag:
+    {{POD}} save --compress {{ROOT}}_{{tag}} {{IMAGE}}
+
+ps:
+    {{POD}} ps --all --storage
+
+rm +image:
+    {{POD}} rm {{image}}
+
+@freeze +task:
+    just _connect "" make O=/build -j$(nproc)
+    just tag {{task}}
