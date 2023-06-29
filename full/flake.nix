@@ -45,6 +45,7 @@
               pkgs.dtc
               pkgs.just
               pkgs.microcom
+              pkgs.dos2unix
               self.packages.x86_64-linux.labgrid
               self.packages.x86_64-linux.umpf
               self.packages.x86_64-linux.ptx_dev_tools
