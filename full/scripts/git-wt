@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ $PWD =~ .*kernel*. ]]; then
+	PROJ="kernel"
+elif [[ $PWD =~ .*barebox*. ]]; then
+	PROJ="barebox"
+fi
+
+git branch -f worktree/$PROJ/$CUSTOMER.$PLATFORM
+git co worktree/$PROJ/$CUSTOMER.$PLATFORM
