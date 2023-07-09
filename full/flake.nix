@@ -107,7 +107,7 @@
 	      }
      	      { help = "Run labgrid-client with just-lg commands";
 		name = "jl";
-		command = "just -f $PRJ_ROOT/justfiles/just-lg";
+		command = "just -f $PRJ_ROOT/justfiles/just-lg $*";
                 category = "Development";
 	      }
      	      { help = "Run podman archive commands with just-podman commands";
