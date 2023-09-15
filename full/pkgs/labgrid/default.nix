@@ -10,7 +10,7 @@
 python3Packages.buildPythonPackage rec {
   pname = "labgrid";
   format = "pyproject";
-  version = "23.0.1";
+  version = "23.0.3";
 
   src = inputs.labgridGit;
   patches = [ ];
