@@ -1,11 +1,11 @@
 [no-cd]
-@pre-barebox:
-    echo "noop"
+pre-barebox:
 
 [no-cd]
-@post-barebox:
-    echo "noop"
+post-barebox:
 
 [no-cd]
-@post-rsync:
-    rsync -avz {{invocation_directory()}}/build/$BAREBOXIMAGE $PRJ_ROOT/labgrid-bruker/$BAREBOXIMAGE 
+pre-kernel:
+
+[no-cd]
+post-kernel:
