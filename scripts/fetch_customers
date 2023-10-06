@@ -1,0 +1,12 @@
+CUSTOMERS=`ssh -q intern@intern.scm.pengutronix.de info -json | jq -r '.repos|keys[]' | grep "stash/str/[a-z]*\." | cut -d"/" -f3`
+for cust in $CUSTOMERS
+do
+	if [ ! -d "$cust" ]; then
+		echo "clone into intern@intern.scm.pengutronix.de:stash/str/$cust"
+		git clone intern@intern.scm.pengutronix.de:stash/str/$cust $cust
+	else
+		cd $cust
+		git pull origin master
+		cd ..
+	fi
+done
