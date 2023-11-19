@@ -76,12 +76,14 @@
 	      { name = "LG_PLACE"; value = ""; }
 	      # if more than one consoles are exported by labgrid-place, specify which one to use
 	      { name = "CONSOLE"; value = ""; }
-	      { name = "TOOLCHAIN"; value = "oselas.toolchain-2022.10.1-aarch64-v8a-linux-gnu"; }
+	      { name = "TOOLCHAIN"; value = "oselas.toolchain-2023.07.0-aarch64-v8a-linux-gnu"; }
 	      ####################
 	      # <-- 
 	      ####################
 
+              { name = "DOCKERFILES"; value = "arm-multi"; }
 	      { name = "TOOLCHAIN_VERSION"; eval = "$(echo $TOOLCHAIN | cut -d- -f2 | cut -d. -f1,2)"; }
+	      { name = "PODMAN_CACHE"; eval = "$(echo 'build-env-arm-multi.oselas.toolchain-')$TOOLCHAIN_VERSION"; }
 	    ];
 
             commands = [

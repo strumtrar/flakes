@@ -17,5 +17,5 @@ else
 fi
 popd
 pushd worktree/$1/$CUSTOMER.$PLATFORM
-ln -sf $PRJ_ROOT/build-envs/just-compile-v7a/justfile justfile
+ln -sf $BUILDENV/just-compile/justfile justfile
 popd
