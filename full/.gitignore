@@ -3,6 +3,9 @@
 /kernel
 /worktree
 /proj
+/configs
+/logs
+/build-envs
 project-*
 bsp
 YOCTO*
