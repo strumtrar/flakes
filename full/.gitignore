@@ -7,6 +7,6 @@
 /logs
 /build-envs
 project-*
-bsp
+/bsp
 YOCTO*
 OSELAS*
